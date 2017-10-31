@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+ 
+<h:head>
+</h:head>
+ 
+<ui:composition template="/template/layoutBase.xhtml">
+ 
+ 
+	<ui:define name="content">
+ 
+		   <p:tabView style="width:600px;height:370px;margin:auto;">
+	 		 	<p:tab title="Cadastro de Policial">
+ 
+	 		 	<h:form id="form-cadastro">	 	
+ 
+	 		 	<h:panelGrid id="panelGrid-campos-form" columns="2" cellpadding="10">
+ 						
+ 						<p:outputLabel value="Matrícula" for="inputText-matricula" />
+        				<p:inputMask id="inputText-matricula" 
+        							value="#{cadastrarPolicialController.policialModel.matricula}"
+        							mask="999.999-9"
+ 									required="true"
+	            				  	requiredMessage="A matrícula é de preenchimento obrigatório"/>
+ 						
+ 						<!--
+ 						<p:outputLabel value="Matrícula" for="inputText-matricula"/>
+	            		<p:inputText id="inputText-matricula" 
+	            				  style="width:100px" maxlength="70" 
+	            				  value="#{cadastrarPolicialController.policialModel.matricula}"
+	            				  required="true"
+	            				  requiredMessage="A matrícula é de preenchimento obrigatório"/>           		 
+	            		           				  
+	            		
+	            		-->
+	            		
+	            		<p:outputLabel value="Graduação" for="inputText-graduacao" />
+				        <p:selectOneMenu id="inputText-graduacao" 
+				        				value="#{cadastrarPolicialController.policialModel.graduacao}" 
+				        				style="width:125px" required="true"
+	            				  		requiredMessage="A graduação é de preenchimento obrigatório">
+				            <f:selectItem itemLabel="Selecione" itemValue="" />
+				            <f:selectItem itemLabel="Soldado" itemValue="0" />
+				            <f:selectItem itemLabel="Cabo" itemValue="1" />
+				            <f:selectItem itemLabel="3º Sargento" itemValue="2" />
+				            <f:selectItem itemLabel="2º Sargento" itemValue="3" />
+				            <f:selectItem itemLabel="1º Sargento" itemValue="4" />
+				            <f:selectItem itemLabel="Sub-Tenente" itemValue="5" />
+				            <f:selectItem itemLabel="2º Tenente" itemValue="6" />
+				            <f:selectItem itemLabel="1º Tenente" itemValue="7" />
+				            <f:selectItem itemLabel="Capitão" itemValue="8" />
+				            <f:selectItem itemLabel="Major" itemValue="9" />
+				            <f:selectItem itemLabel="Tenente-Coronel" itemValue="10" />
+				            <f:selectItem itemLabel="Coronel" itemValue="11" />
+				        </p:selectOneMenu>
+	            		
+	            		<p:outputLabel value="Nome de Guerra" for="inputText-nomeGuerra"/>
+	            		<p:inputText id="inputText-nomeGuerra" 
+	            				  style="width:300px" maxlength="70" 
+	            				  value="#{cadastrarPolicialController.policialModel.nomeGuerra}"
+	            				  required="true"
+	            				  requiredMessage="O nome de guerra é de preenchimento obrigatório"/>
+ 						
+	 		 			<p:outputLabel value="Ano de ingresso" for="inputText-anoPraca"/>
+	            		<p:inputText id="inputText-anoPraca" 
+	            				  style="width:70px" maxlength="70" 
+	            				  value="#{cadastrarPolicialController.policialModel.anoPraca}"
+	            				  required="true"
+	            				  requiredMessage="A matrícula é de preenchimento obrigatório"/>
+	 		 			
+	 		 			<p:outputLabel value="Número de praça" for="inputText-numPraca"/>
+	            		<p:inputText id="inputText-numPraca" 
+	            				  style="width:70px" maxlength="70" 
+	            				  value="#{cadastrarPolicialController.policialModel.numPraca}"
+	            				  required="true"
+	            				  requiredMessage="A matrícula é de preenchimento obrigatório"/>
+	 		 			 
+	            		<p:outputLabel value="E-mail" for="inputText-email"/>
+	            		<p:inputText id="inputText-email" 
+	            			     style="width:300px" 
+	            			     maxlength="80" 
+	            			     value="#{cadastrarPolicialController.policialModel.email}"
+	            			     required="true"
+	            			     requiredMessage="O email é de preenchimento obrigatório"/>           		
+           		
+	            		<p:spacer/>
+ 
+	            		<p:commandButton value="Salvar" 
+	            				 id="commandButton-salvar"
+								 icon="ui-icon-gear"
+								 actionListener="#{cadastrarPolicialController.SalvarNovoPolicial}"
+								 update="panelGrid-campos-form"/>
+ 
+ 
+	 		 	</h:panelGrid>
+ 
+	 		 		<p:messages showDetail="true" autoUpdate="true" closable="true" severity="warn"/>
+	 		 		<p:messages autoUpdate="true" closable="true" severity="error"/>		
+		   			<p:messages showDetail="true" autoUpdate="true" closable="true" severity="info"/>
+ 
+	 		 		</h:form>
+ 
+	 			 </p:tab>		 		
+ 
+	 		</p:tabView> 
+ 
+ 
+ 
+	</ui:define>
+ 
+</ui:composition>
+ 
+ 
+</html>
