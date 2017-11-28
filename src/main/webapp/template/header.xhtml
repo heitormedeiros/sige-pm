@@ -3,23 +3,63 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
- 
-	<h:form>
- 		
-		<p:menubar>
+
+<h:form>
+
+	<!-- 
+	<p:menubar styleClass="ocupada">
+
+		<p:menuitem value="Home" icon="ui-icon-home" url="home.xhtml" />
+		<p:menuitem value="Cadastro PM" icon="ui-icon-contact"
+			url="cadastrarPolicial.xhtml" />
+		<p:menuitem value="Consulta PM" icon="ui-icon-search"
+			url="consultarPolicial.xhtml" />
+		<p:menuitem value="Consulta PM por Carousel" icon="ui-icon-refresh" url="consultarPolicialCarousel.xhtml"/>
+		<p:menuitem value="Cadastro Viatura" icon="ui-icon-gear"
+			url="cadastrarViatura.xhtml" />
+		<p:menuitem value="Consulta Viatura" icon="ui-icon-search"
+			type="button" url="consultarViatura.xhtml" />
+
+		<f:facet name="options">
+			<p:commandButton
+				value="Logout: #{usuarioController.usuarioModel.usuario}"
+				icon="ui-icon-extlink" action="#{usuarioController.Logout}" />
+		</f:facet>
+
+	</p:menubar>
+	 -->
+	 
+	<p:menubar>
+		<p:menuitem value="Home" icon="ui-icon-home" url="home.xhtml" />
+
+		<p:submenu label="Cadastro" icon="ui-icon-pencil">
+			<p:menuitem value="Policial" url="cadastrarPolicial.xhtml"
+				icon="ui-icon-person" />
+			<p:separator />
+			<p:menuitem value="Viatura" url="cadastrarViatura.xhtml"
+				icon="ui-icon-wrench" />
+		</p:submenu>
+
+		<p:submenu label="Consulta" icon="ui-icon-search">
+			<p:menuitem value="Policial" url="consultarPolicial.xhtml"
+				icon="ui-icon-person" />
+			<p:separator />
+			<p:menuitem value="Viatura" url="consultarViatura.xhtml"
+				icon="ui-icon-wrench" />
+		</p:submenu>
+
+		<f:facet name="options">
+			Seja bem-vindo, <strong>
+				#{usuarioController.usuarioModel.usuario}</strong>.
+		</f:facet>
 		
-			<p:menuitem value="Home" icon="ui-icon-home" url="home.xhtml" />
-			<p:menuitem value="Cadastro PM" icon="ui-icon-document" url="cadastrarPolicial.xhtml" />
-			<p:menuitem value="Consulta PM" icon="ui-icon-document" url="consultarPolicial.xhtml" />
-			<p:menuitem value="Consulta PM por Carousel" icon="ui-icon-document" url="consultarPolicialCarousel.xhtml"/>
-			 
- 		
-			<f:facet name="options">            
-            	<p:commandButton value="Logout: #{usuarioController.usuarioModel.usuario}" icon="ui-icon-extlink" action="#{usuarioController.Logout}"/>
-        	</f:facet>
-        	
-		</p:menubar>
- 
-	</h:form>
- 
+		<f:facet name="options">
+			<p:commandButton
+				value="sair"
+				icon="ui-icon-close" action="#{usuarioController.Logout}" />
+		</f:facet>
+	</p:menubar>
+
+</h:form>
+
 </html>

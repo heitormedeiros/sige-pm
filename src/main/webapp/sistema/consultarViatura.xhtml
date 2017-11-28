@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+ 
+<h:head>
+</h:head>
+ 
+<ui:composition template="/template/layoutBase.xhtml">
+ 
+	<ui:define name="content">
+ 		
+ 		<p:dialog header="Editar cadastro de viatura" 
+				  id="dialog-modal-editar" 
+		   		  widgetVar="dialog-modal-editar" 
+		   		  modal="true" 
+		   		  height="400px"
+		   		  width="550px">
+ 
+    		 <ui:include src="/sistema/editarViatura.xhtml"/>
+ 
+ 
+		</p:dialog>
+ 		
+ 		
+		<h:form style="margin:auto;margin-left:2%;" id="form-consulta">
+ 
+			<p:dataTable id="dataTable-registros"
+						 var="viatura" 
+						 value="#{consultarViaturaController.viaturas}" 
+						 rows="15"
+						 paginator="true"
+						 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15"
+                         style="width:98%;">
+ 
+						<p:column headerText="ID" style="width:45px;">
+            				<h:outputText value="#{viatura.id}" />
+        				</p:column>
+ 
+ 						<p:column headerText="Placa">
+            				<h:outputText value="#{viatura.placa}" />
+        				</p:column>
+ 						
+ 						<p:column headerText="Prefixo">
+            				<h:outputText value="#{viatura.prefixo}" />
+        				</p:column>
+        				
+        				<p:column headerText="Fabricante">
+            				<h:outputText value="#{viatura.marca}" />
+        				</p:column>
+        				
+        				<p:column headerText="Modelo">
+            				<h:outputText value="#{viatura.modelo}" />
+        				</p:column>
+        				
+        				<p:column headerText="Ano">
+            				<h:outputText value="#{viatura.ano}" />
+        				</p:column>
+        				
+        				
+        				<p:column headerText="" style="width:25px;">
+ 
+        				       <p:commandButton icon="ui-icon-pencil" 
+        				    				    title="Editar Registro"                        					 
+                        					    ajax="true"                        					 
+                        					    actionListener="#{consultarViaturaController.Editar(viatura)}"
+                        					    oncomplete="PF('dialog-modal-editar').show();" 
+                        					    update="dialog-modal-editar"/> 
+        				 </p:column>
+ 
+        				 <p:column headerText="" style="width:25px;">
+ 								<p:commandButton icon="ui-icon-trash" 
+        				    		    title="Excluir Registro"                        					 
+                        				ajax="true"
+                        				actionListener="#{consultarViaturaController.ExcluirViatura(viatura)}"
+                        				update="@form">
+                        				<p:confirm header="Confirmação" message="Deseja realmente excluir?" icon="ui-icon-alert" />
+                        		</p:commandButton>                        		 
+        				 </p:column>
+        				 
+			</p:dataTable>
+ 			 			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					    </p:confirmDialog>
+ 			 			
+		</h:form>
+ 
+	</ui:define>
+ 
+</ui:composition>
+</html>

@@ -30,7 +30,8 @@ public class CadastrarPolicialController {
 	public void setPolicialModel(PolicialModel policialModel) {
 		this.policialModel = policialModel;
 	}
- 
+
+	
 	/**
 	 *SALVA UM NOVO REGISTRO VIA INPUT 
 	 */

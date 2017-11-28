@@ -29,8 +29,9 @@ public class PolicialRepository {
 	 */
 	public void SalvarNovoRegistro(PolicialModel policialModel){
  
-		entityManager =  Uteis.JpaEntityManager();
- 
+		entityManager =  Uteis.EMF.createEntityManager();
+				
+		
 		policialEntity = new PolicialEntity();
 		
 		policialEntity.setMatricula(policialModel.getMatricula());
@@ -40,12 +41,18 @@ public class PolicialRepository {
 		policialEntity.setNumPraca(policialModel.getNumPraca());
 		policialEntity.setEmail(policialModel.getEmail().toLowerCase());
 		policialEntity.setDataCadastro(LocalDateTime.now());
-		 
+		
+		entityManager.getTransaction().begin();
+		
 		UsuarioEntity usuarioEntity = entityManager.find(UsuarioEntity.class, policialModel.getUsuarioModel().getCodigo()); 
  
 		policialEntity.setUsuarioEntity(usuarioEntity);
  
-		entityManager.persist(policialEntity); 
+		entityManager.persist(policialEntity);
+		entityManager.flush();
+		entityManager.getTransaction().commit();
+		
+
 	}
 	
 	/***
@@ -57,7 +64,8 @@ public class PolicialRepository {
 		List<PolicialModel> policiaisModel = new ArrayList<PolicialModel>();
  
 		entityManager =  Uteis.JpaEntityManager();
- 
+		
+		
 		Query query = entityManager.createNamedQuery("PolicialEntity.findAll");
  
 		@SuppressWarnings("unchecked")
@@ -109,8 +117,10 @@ public class PolicialRepository {
 	 */
 	public void AlterarRegistro(PolicialModel policialModel){
  
+		//entityManager =  Uteis.JpaEntityManager();
+ 		
 		entityManager =  Uteis.JpaEntityManager();
- 			
+		
 		PolicialEntity policialEntity = this.GetPolicial(policialModel.getId());
 		
 		policialEntity.setMatricula(policialModel.getMatricula());
@@ -129,11 +139,17 @@ public class PolicialRepository {
 	 */
 	public void ExcluirRegistro(long codigo){
 
-		entityManager =  Uteis.JpaEntityManager();		
+		//entityManager =  Uteis.JpaEntityManager();		
 
+		entityManager = Uteis.JpaEntityManager();
+		
+		
 		PolicialEntity policialEntity = this.GetPolicial(codigo);
-
+				
 		entityManager.remove(policialEntity);
+
+		
+		//entityManager.remove(policialEntity);
 	}
 	
 	
